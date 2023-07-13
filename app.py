@@ -3,27 +3,19 @@ import langchain
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain.llms import AzureOpenAI
 from langchain.embeddings import OpenAIEmbeddings
-from openai.embeddings_utils import get_embedding, cosine_similarity
 from langchain.vectorstores import Chroma
 from langchain import OpenAI, VectorDBQA
 from langchain.chains import RetrievalQAWithSourcesChain
 import PyPDF2
 import os
 import openai
-import re
-import requests
-import sys
-from num2words import num2words
-import os
-import pandas as pd
-import numpy as np
+
 
 # Configure Azure OpenAI API
-openai.api_type = "azure"
-openai.api_base = ""
-openai.api_key = ""
-openai.api_version = "2022-12-01"
-engine="hack2023d1gpt35"
+openai_api_type = "azure"
+openai_api_base = "https://hack2023d1.openai.azure.com/"
+openai_api_version = "2022-12-01"
+deployment_name ="hack12023d1gpt35"
 
 #This function will go through pdf and extract and return list of page texts.
 def read_and_textify(files):
@@ -59,18 +51,18 @@ elif uploaded_files:
   sources = textify_output[1]
   
   #extract embeddings
-  embeddings = OpenAIEmbeddings(deployment="hack12023d1gpt35")
+  embeddings = OpenAIEmbeddings(openai_api_key = st.secrets["openai_api_key"])
   #vstore with metadata. Here we will store page numbers.
   vStore = Chroma.from_texts(documents, embeddings, metadatas=[{"source": s} for s in sources])
   #deciding model
-  model_name = "gpt-3.5-turbo"
+  model_name = "gpt-35-turbo"
   # model_name = "gpt-4"
 
   retriever = vStore.as_retriever()
   retriever.search_kwargs = {'k':2}
 
   #initiate model
-  llm = OpenAI(model_name=model_name, openai_api_key = st.secrets["openai_api_key"], openai_api_base = st.secrets["openai_api_base"] , streaming=True)
+  llm = AzureOpenAI(model_name=model_name, openai_api_key = st.secrets["openai_api_key"], streaming=True)
   model = RetrievalQAWithSourcesChain.from_chain_type(llm=llm, chain_type="stuff", retriever=retriever)
   
   st.header("Ask your data")
