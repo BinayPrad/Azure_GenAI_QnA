@@ -10,6 +10,13 @@ from langchain.chains import RetrievalQAWithSourcesChain
 import PyPDF2
 import os
 import openai
+import re
+import requests
+import sys
+from num2words import num2words
+import os
+import pandas as pd
+import numpy as np
 
 # Configure Azure OpenAI API
 openai.api_type = "azure"
