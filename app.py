@@ -14,7 +14,7 @@ import openai
 # Configure Azure OpenAI API
 openai_api_type = "azure"
 openai_api_base = "https://hack2023d1.openai.azure.com/"
-openai_api_key = ""
+openai_api_key = "704ba8c00e214f0bbf7ff2af629e3edb"
 openai_api_version = "2022-12-01"
 deployment_name ="hack12023d1gpt35"
 
@@ -63,7 +63,7 @@ elif uploaded_files:
   retriever.search_kwargs = {'k':2}
 
   #initiate model
-  llm = AzureOpenAI(model_name=model_name, openai_api_key = st.secrets["openai_api_key"], streaming=True)
+  llm = AzureOpenAI(model_kwargs={'engine':'hack2023d1gpt35'}, openai_api_key = st.secrets["openai_api_key"], streaming=True)
   model = RetrievalQAWithSourcesChain.from_chain_type(llm=llm, chain_type="stuff", retriever=retriever)
   
   st.header("Ask your data")
