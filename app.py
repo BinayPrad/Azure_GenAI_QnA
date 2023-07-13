@@ -36,7 +36,7 @@ st.header("Multidoc_QnA")
 st.write("---")
   
 #file uploader
-uploaded_files = st.file_uploader("Upload documents",accept_multiple_files=True, type=["txt","pdf",docx])
+uploaded_files = st.file_uploader("Upload documents",accept_multiple_files=True, type=["txt","pdf"])
 st.write("---")
 
 if uploaded_files is None:
