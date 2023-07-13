@@ -7,6 +7,8 @@ from langchain.vectorstores import Chroma
 from langchain import OpenAI, VectorDBQA
 from langchain.chains import RetrievalQAWithSourcesChain
 import PyPDF2
+import os
+import openai
 
 # Configure Azure OpenAI API
 openai.api_type = "azure"
