@@ -50,7 +50,7 @@ elif uploaded_files:
   sources = textify_output[1]
   
   #extract embeddings
-  embeddings = OpenAIEmbeddings(deployment="hack2023d1gpt35")
+  embeddings = OpenAIEmbeddings(deployment="hack12023d1gpt35")
   #vstore with metadata. Here we will store page numbers.
   vStore = Chroma.from_texts(documents, embeddings, metadatas=[{"source": s} for s in sources])
   #deciding model
