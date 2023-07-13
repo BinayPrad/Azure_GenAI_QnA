@@ -15,6 +15,7 @@ openai.api_type = "azure"
 openai.api_base = ""
 openai.api_key = ""
 openai.api_version = "2022-12-01"
+deployment_name = "hack12023d1gpt35"
 
 #This function will go through pdf and extract and return list of page texts.
 def read_and_textify(files):
