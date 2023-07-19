@@ -13,8 +13,8 @@ import openai
 
 # Configure Azure OpenAI API
 openai_api_type = "azure"
-openai_api_base = ""
-openai_api_key = ""
+openai_api_base = "https://hack2023d1.openai.azure.com/"
+openai.api_key = os.getenv("OPENAI_API_KEY")
 openai_api_version = "2022-12-01"
 deployment_name ="hack12023d1gpt35"
 
